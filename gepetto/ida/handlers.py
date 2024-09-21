@@ -72,8 +72,11 @@ class ExplainHandler(idaapi.action_handler_t):
         decompiler_output = ida_hexrays.decompile(idaapi.get_screen_ea())
         v = ida_hexrays.get_widget_vdui(ctx.widget)
         gepetto.config.model.query_model_async(
-            _("Can you explain what the following C function does and suggest a better name for "
-              "it?\n{decompiler_output}").format(decompiler_output=str(decompiler_output)),
+            _("Explain what the following C function does step by steps "
+              "Take care to carefully explain important steps of the function "
+              "You can also suggest a better name for it "
+              "Don't hesitate to say when the intention of the function is not clear"
+              "\n{decompiler_output}").format(decompiler_output=str(decompiler_output)),
             functools.partial(comment_callback, address=idaapi.get_screen_ea(), view=v))
         print(_("Request to {model} sent...").format(model=str(gepetto.config.model)))
         return 1
