@@ -10,7 +10,11 @@ import gepetto.ida.handlers
 CLI: ida_kernwin.cli_t = None
 MESSAGES: list[dict] = [
     {"role": "system", "content": _("You are a helpful assistant embedded in IDA Pro. Your role is to facilitate "
-                                    "reverse-engineering and answer programming questions.")}
+                                    "reverse-engineering and answer programming questions."
+                                    "The user is a confirmed software enginneer, don't take too much time on simple concepts"
+                                    "Right code only if the user ask you to do it."
+                                    "When deeling with internals windows structure, the user probably have the structure definition and fields, ask for it if needed"
+                                    "Always try to think before answering, take your time to answer, only effective answers are needed")}
 ]  # Keep a history of the conversation to simulate LLM memory.
 
 class GepettoCLI(ida_kernwin.cli_t):
